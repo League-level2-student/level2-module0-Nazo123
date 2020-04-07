@@ -9,20 +9,31 @@ public class _01_RobotRace {
 public static void main(String[] args) {
 	//2. create an array of 5 robots.
 Robot[] bob = new Robot[5];
+int winner = 0;
 	//3. use a for loop to initialize the robots.
-for (int i = 0; i<5;i++) {
-	
+for (int i = 0; i<5;i++) {	
 	bob[i] = new Robot();
 	bob[i].setX(175*i+100);
 	bob[i].setY(500);
 }
 Random r = new Random();
-while(bob[0].getY()>20&bob[1].getY()>20&bob[2].getY()>=20&bob[3].getY()>=20&bob[4].getY()>=20)
+while(bob[0].getY()>20&&bob[1].getY()>20&&bob[2].getY()>=20&&bob[3].getY()>=20&&bob[4].getY()>=20) {
 for (int i = 0; i<5;i++) {
-	
-
-	bob[i].move(r.nextInt(10000));
+	bob[i].setSpeed(50);
+	bob[i].move(r.nextInt(40));
+	if (bob[i].getY()<20) {
+		winner = i;
+		break;
+	}
 }
+}
+bob[winner].setSpeed(10);
+bob[winner].move(-50);
+bob[winner].turn(720);
+
+
+
+
 		//4. make each robot start at the bottom of the screen, side by side, facing up
 	//5. use another for loop to iterate through the array and make each robot move 
 	//   a random amount less than 50.
