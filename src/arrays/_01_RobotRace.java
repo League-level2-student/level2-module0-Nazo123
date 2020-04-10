@@ -10,6 +10,7 @@ public static void main(String[] args) {
 	//2. create an array of 5 robots.
 Robot[] bob = new Robot[5];
 int winner = 0;
+int[] score = new int[5];
 	//3. use a for loop to initialize the robots.
 for (int i = 0; i<5;i++) {	
 	bob[i] = new Robot();
@@ -17,16 +18,26 @@ for (int i = 0; i<5;i++) {
 	bob[i].setY(500);
 }
 Random r = new Random();
-while(bob[0].getY()>20&&bob[1].getY()>20&&bob[2].getY()>=20&&bob[3].getY()>=20&&bob[4].getY()>=20) {
+while(true) {
 for (int i = 0; i<5;i++) {
-	bob[i].setSpeed(50);
-	bob[i].move(r.nextInt(40));
-	if (bob[i].getY()<20) {
+	bob[i].setSpeed(100);
+	for (int e = r.nextInt(40); e>0;e-- ) {
+	bob[i].move(2);
+bob[i].turn(2);		
+score[i] = score[i]+2;
+
+
+	}
+	if (score[i]>=360) {
 		winner = i;
 		break;
 	}
 }
+if (score[winner]>=360) {
+	break;
 }
+}
+bob[winner].setAngle(0);
 bob[winner].setSpeed(10);
 bob[winner].move(-50);
 bob[winner].turn(720);

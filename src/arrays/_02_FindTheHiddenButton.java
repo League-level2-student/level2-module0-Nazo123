@@ -57,14 +57,20 @@ window.setVisible(true);
 		//12. Give the user the instructions for the game.
 		
 		//13. initialize the hiddenButton variable to a random number less than the int created in step 3
-		
+Random r = new Random();
+		hiddenButton =  r.nextInt(e);
 		//14. Set the text of the JButton located at hiddenButton to  "ME"
-
+button[hiddenButton].setText("ME");
 		//15. Use Thread.sleep(1000); to pause the program.
 		//    Surround it with a try/catch - use Eclipse helper for this
-		
+try {
+	Thread.sleep(1000);
+} catch (InterruptedException e1) {
+	// TODO Auto-generated catch block
+	e1.printStackTrace();
+}
 		//16. Set the text of the JButton located at hiddenButton to be blank.
-		
+		button[hiddenButton].setText(null);
 	}
 
 	@Override
@@ -72,7 +78,13 @@ window.setVisible(true);
 		JButton buttonClicked = (JButton)e.getSource();
 		
 		//17. if the hiddenButton is clicked, tell the user that they win.
-		
+		if (buttonClicked.equals(button[hiddenButton])){
+			
+			JOptionPane.showMessageDialog(null, "You Win!");
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "Try Again!");
+		}
 		//18. else tell them to try again
 	}
 }
